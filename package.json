@@ -1,0 +1,28 @@
+{
+  "name": "localhost",
+  "version": "1.0.0",
+  "description": "This is the initiated README for team localhost , Please edit this as you build your project",
+  "main": "app.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/styles.css -o public/assets/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HAC-2020/localhost-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HAC-2020/localhost-/issues"
+  },
+  "homepage": "https://github.com/HAC-2020/localhost-#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.27",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "tailwindcss": "^1.6.2"
+  }
+}
