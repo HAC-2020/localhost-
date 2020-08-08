@@ -94,6 +94,15 @@ router.get('/profile',auth.User.authCheck,(req,res)=>{
   res.render('user-profile',{user : req.user});
 })
 
+router.get('/dashboard/:id',auth.User.authCheck,(req,res)=>{
+  res.render('place-order',{
+    shop_id:req.params.id,
+    cust_id:req.user.id,
+    cust_email:req.user.email,
+    cust_name:req.user.name,
+    cust_location:req.user.City
+  });
+})
 
 router.post('/signup',(req,res)=>{
   const {name,email,pass,re_pass} = req.body;

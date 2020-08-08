@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Place Order</title>
+      <meta name="author" content="name">
+      <meta name="description" content="description here">
+      <meta name="keywords" content="keywords,here">
+      <link href="/assets/styles.css" rel="stylesheet">
+      <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <!--Totally optional :) -->
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+   </head>
+   
+   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+      <div class="flex md:flex-row-reverse flex-wrap">
+		
+		 <!--Main Content-->
+         <div class="w-full md:w-4/5 bg-gray-100">
+            <div class="container bg-gray-100 pt-16 px-6">
+              <!-- form order -->
+              <div>
+                <h2 class="text-5xl text-center text-black font-semibold mb-5">Place Orders</h2>
+                <form class="w-full w-2xl text-center" id="form">
+                  <div class="flex items-center py-2">
+                    <input class="border-b border-b-2 border-teal-500 appearance-none bg-transparent w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" id="name" type="text" placeholder="Item Name" aria-label="Full name">
+                    <input class="border-b border-b-2 border-teal-500 appearance-none bg-transparent w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" id="quan" type="Number" min="1" placeholder="Quantity" aria-label="Full name">
+                    <button type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                      Add Item
+                    </button>
+                  </div>
+                </form>
+                <form class="w-full w-2xl text-center" method="POST">
+                  <div id="form-1">
+
+                  </div>
+                  <button type="submit  "
+        class="py-2 px-4 bg-transparent my-4 text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" id="lol"
+      >Place Order</button>
+                </form>
+              </div>
+            </div>
+         </div>
+		 
+		 <!--Sidebar-->
+     <div class="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-600">
+      <div class="md:relative mx-auto lg:float-right lg:px-6">
+         <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
+            <li class="mr-3 flex-1">
+               <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+               <i class="fas fa-home pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:font-bold block md:inline-block">Home</span>
+               </a>
+            </li>
+            <li class="mr-3 flex-1">
+               <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+               <i class="fas fa-history pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">History</span>
+               </a>
+            </li>
+            <li class="mr-3 flex-1">
+               <a href="/user/profile/" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+               <i class="fas fa-id-badge pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Profile</span>
+               </a>
+            </li>
+            <li class="mr-3 flex-1">
+               <a href="/user/logout" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+               <i class="fas fa-sign-out-alt pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">LogOut</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+      </div>
+   </body>
+   <script>
+     const order=[];
+     let id=0;
+     document.getElementById('form').addEventListener('submit',(e)=>{
+      let output='';
+      let name=document.getElementById('name').value;
+      let quan=document.getElementById('quan').value;
+      order.push({
+        name,
+        quan
+      });
+     
+      order.forEach((oder,index)=>{
+        output+=`
+        <div class="flex items-center py-2 border-b border-b-2 border-teal-500" id=${index}>
+          <input class="border-none border-teal-500 appearance-none bg-transparent w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" value=${oder.name} name="name-${index}" aria-label="Full name" disabled>
+          <input class="appearance-none bg-transparent w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="Number" value=${oder.quan} name="quan-${index}" aria-label="Full name" disabled>
+          <button onclick="doDelete(${index});" class="delete flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+           Delete
+          </button>            
+        </div>
+      `
+      })
+
+      document.getElementById('form-1').innerHTML=output;
+
+      document.getElementById('name').value='';
+      document.getElementById('quan').value='';
+      e.preventDefault();
+     })
+    
+
+    function doDelete(index){
+      console.log(order);
+      order.splice(index,1);
+      document.getElementById(index).remove();
+      console.log(order);
+    }  
+   </script>
+</html>
