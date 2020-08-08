@@ -72,6 +72,16 @@ router.get('/dashboard',auth.Shop.authCheck,(req,res)=>{
   res.redirect('/shop/profile-update')
 })
 
+
+
+router.get('/profile',auth.Shop.authCheck,(req,res)=>{
+  res.render('profileUpdate-shop',{user:req.user});
+})
+
+
+
+
+
 router.get('/logout',(req,res)=>{
   req.logOut();
   req.flash('success_msg','You are now successfully logout');
