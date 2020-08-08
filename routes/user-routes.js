@@ -90,6 +90,11 @@ router.get('/signup',auth.User.revauthCheck,(req,res)=>{
   res.render('signup-customer');
 });
 
+router.get('/profile',auth.User.authCheck,(req,res)=>{
+  res.render('user-profile',{user : req.user});
+})
+
+
 router.post('/signup',(req,res)=>{
   const {name,email,pass,re_pass} = req.body;
   const err=[];
