@@ -13,7 +13,7 @@
 
 <img src="https://img.shields.io/github/languages/top/HAC-2020/localhost-?style=plastic">
 
-<img src="https://img.shields.io/bitbucket/issues-raw/HAC-2020/localhost-?style=plastic">
+<img src="https://img.shields.io/github/issues/HAC-2020/localhost-?style=plastic">
 
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
 </p>
