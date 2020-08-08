@@ -104,7 +104,43 @@
       document.getElementById('quan').value='';
       e.preventDefault();
      })
-    
+
+    document.getElementById('lol').addEventListener('click',async (e)=>{
+      e.preventDefault();
+      let data={
+        orders:order,
+        from:{
+          id:"<%=cust_id%>",
+          email:"<%=cust_email%>",
+          name : "<%=cust_name%>",
+          location:"<%=cust_location%>"
+        },
+        to:{
+          id:"<%=shop_id%>",
+        }
+      }
+      console.log(2,data);
+
+     const res=await fetch('/api/order',{
+        method:'POST',
+        headers : {
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(data)
+      });
+    const datal=await res.json();
+    console.log(datal);
+    swal({
+      title: "Order Placed Successfully !!!",
+      text: "Thanx for ordering",
+      icon: "success",
+    }).then((data)=>{
+      if(data){
+        window.location.href="/user/dashboard";
+      }
+    })
+    })
+     
 
     function doDelete(index){
       console.log(order);

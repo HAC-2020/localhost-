@@ -50,6 +50,22 @@ app.get('/',(req,res)=>{
   res.render('shop-contomer');
 })
 
+app.post('/api/order',(req,res)=>{
+  const {orders,to,from} = req.body;
+  const order=new Order({
+    order:orders,
+    to:to.id,
+    from:from.id,
+    fromName: from.name,
+    fromLocation: from.location,
+    fromEmail:from.email
+  })
+  order.save().then((data)=>{
+    res.send(data);
+  })
+}) 
+
+
 const PORT=process.env.PORT || 4000;
 
 const server=app.listen(PORT,function(){
