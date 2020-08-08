@@ -7,7 +7,18 @@ const flash=require('connect-flash');
 const session=require('express-session');
 const passportSet=require('./config/passport-setup');
 require('./config/passport-setup-local')(passport);
+const nodemailer=require('nodemailer');
+const Order=require('./models/Order');
 require('dotenv').config();
+
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: process.env.EMAIL, 
+      pass: process.env.PASSWORD
+  }
+});
 
 mongoose.connect(process.env.MONGO,{
   useNewUrlParser: true,
@@ -52,6 +63,23 @@ app.get('/',(req,res)=>{
 
 app.post('/api/order',(req,res)=>{
   const {orders,to,from} = req.body;
+  const mailOptions = {
+    from: 'customer.pansari@gmail.com', 
+    to: from.email,
+    subject: "Order Recieved",
+    text: `Dear ${from.name},
+           We Have Recieved your order and we are processing it
+           Please wait for the order to be confirmed from 
+           shop side`
+  };
+  transporter.sendMail(mailOptions,(err,data)=>{
+    if(err){
+      console.log(err);
+    }else{
+      console.log('email sent!!!',data);
+    }
+  })
+
   const order=new Order({
     order:orders,
     to:to.id,
@@ -64,7 +92,6 @@ app.post('/api/order',(req,res)=>{
     res.send(data);
   })
 }) 
-
 
 const PORT=process.env.PORT || 4000;
 
