@@ -17,6 +17,60 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/profile-update',auth.Shop.authCheck,(req,res)=>{
+  res.render('profileUpdate-shop',{user:req.user});
+});
+
+router.post('/profile-update',(req,res)=>{
+  const err=[];
+  const {password,shopname,area,city,state,image} = req.body;
+  if(!password || !shopname || !area || !state || !city){
+    err.push('All fields are required');
+  }
+  if(password.length <6){
+    err.push('Password Should be 6 character long');
+  }  
+  Shop.findOne({shopname})
+    .then((user)=>{
+      if(user){
+        err.push('Shopname is not Available');
+      }
+
+      if(err.length>0){
+        res.render('profileUpdate-shop',{
+          password,
+          shopname,
+          city,
+          state,
+          image,
+          area,
+          err
+        });
+      }else{
+        bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(password, salt, function(err, hash) { 
+              Shop.findOneAndUpdate({email : req.user.email},{$set:{pass : hash,shopname,Area : area,City : city,State:state,image,Updated:true}},{upsert:true,new:true}).then((data)=>{
+                 res.redirect('/shop/dashboard');
+              }) 
+          });
+      }); 
+      }
+    })
+})
+
+router.get('/dashboard',auth.Shop.authCheck,(req,res)=>{
+   if(req.user.Updated){
+     Order.find({to:req.user.id})
+       .then((data)=>{
+         res.render('dashboard-shop',{
+           user:req.user,
+           orders:data
+          });
+       })
+     return;
+   }
+  res.redirect('/shop/profile-update')
+})
 
 router.get('/logout',(req,res)=>{
   req.logOut();
