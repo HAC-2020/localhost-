@@ -114,6 +114,73 @@
         crossorigin="anonymous"></script>
 </body>
 <script>
+    document.getElementById('decline').addEventListener('click',async (e)=>{
+        const res=await fetch('/api/order/<%=order.id%>',{
+        method:'DELETE',
+        headers : {
+          'Content-Type':'application/json'
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      swal({
+      title: "Order Deleted Successfully !!!",
+      icon: "success",
+    }).then((data)=>{
+      if(data){
+        window.location.href="/shop/dashboard";
+      }
+    })
+    });
+document.getElementById('accept').addEventListener('click', async (e)=>{
+  e.preventDefault();
+  let email=document.getElementById('email').value;
+  let time=document.getElementById('select').value;
+  let data={
+    email,
+    time
+  };
+  console.log(data);
+  const res=await fetch('/api/order/<%=order.id%>',{
+        method:'POST',
+        headers : {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const datal = await res.json();
+      console.log(datal);
+  swal({
+      title: "Order Accepted Successfully !!!",
+      text:"time alloted to customer",
+      icon: "success",
+    }).then((data)=>{
+      if(data){
+        window.location.href="/shop/dashboard";
+      }
+    })
+})
+
+document.getElementById('deliver').addEventListener('click',async (e)=>{
+        const res=await fetch('/api/order/<%=order.id%>',{
+        method:'PUT',
+        headers : {
+          'Content-Type':'application/json',
+          body: JSON.stringify('order deliverd')
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      swal({
+      title: "Order Delivered Successfully !!!",
+      icon: "success",
+    }).then((data)=>{
+      if(data){
+        window.location.href="/shop/dashboard";
+      }
+    })
+    });
+
 </script>
 
 </html>
