@@ -5,7 +5,7 @@
 
 <img src="https://img.shields.io/npm/v/npm">
 
-<img src="https://img.shields.io/packagist/stars/HAC-2020/localhost-?style=plastic"> 
+<img src="https://img.shields.io/github/stars/HAC-2020/localhost-?style=social"> 
 
 <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >
 
@@ -13,7 +13,7 @@
 
 <img src="https://img.shields.io/github/languages/top/HAC-2020/localhost-?style=plastic">
 
-<img src="https://img.shields.io/bitbucket/issues-raw/HAC-2020/localhost-?style=plastic">
+<img src="https://img.shields.io/github/issues/HAC-2020/localhost-?style=plastic">
 
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
 </p>
