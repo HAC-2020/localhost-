@@ -79,7 +79,15 @@ router.get('/profile',auth.Shop.authCheck,(req,res)=>{
 })
 
 
-
+router.get('/history',auth.Shop.authCheck,(req,res)=>{
+  Order.find({to:req.user.id})
+    .then((data)=>{
+      res.render('history-shop',{
+        data,
+        user:req.user
+      });
+    })
+  })
 
 
 router.get('/logout',(req,res)=>{

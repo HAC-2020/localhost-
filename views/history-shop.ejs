@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/assets/styles.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/shop-sidebar.css">
+    <link rel="stylesheet" href="/assets/css/shop-history.css">
+    <title>History | Shop</title>
+</head>
+
+<body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+
+        <div class="left_area">
+            <label for="check">
+                <i class="fa fa-bars" id="sidebar_btn"></i>
+            </label>
+            <h3> Pansari</h3>
+        </div>
+        <div class="right_area">
+            <a href="/shop/logout" class="logout_btn">Logout</a>
+        </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+        <center>
+            <img src="<%=user.image%>" class="profile_image" alt="">
+            <h4><%=user.shopname%></h4>
+        </center>
+        <a href="/shop/dashboard"><i class="fa fa-desktop"></i><span>Dashboard</span></a>
+        <a href="/shop/profile-update"><i class="fa fa-sliders"></i><span>Profile</span></a>
+        <a href="#"><i class="fa fa-history"></i><span>History</span></a>
+        <a href="/shop/logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
+    </div>
+    <!--sidebar end-->
+    <div class="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>RID</th>
+                    <th>Customer Name</th>
+                    <th>Location</th>
+                    <th>Date Registered</th>
+                    <th>Status</th>
+                   
+                </tr>
+            </thead>
+            <!-- Repeat here -->
+            <%data.forEach((order)=>{%>
+                <tr>
+                    <td><%=order.id%></td>
+                    <td><%=order.fromName%></td>
+                    <td><%=order.fromLocation%></td>
+                    <td><%=order.date%></td>
+                    <%if(order.orderCompleted){%>
+                        <td>Completed</td>
+                    <%}else{%>
+                        <td>Pending</td>
+                    <%}%>
+                </tr>
+            <%})%>
+        </table>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

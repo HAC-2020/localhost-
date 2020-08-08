@@ -5,6 +5,8 @@ const User=require('../models/user');
 const passport=require('passport');
 const auth=require('../config/auth');
 const Shop=require('../models/Shop');
+const Order=require('../models/Order');
+
 
 router.get('/login',auth.User.revauthCheck,(req,res)=>{
   res.render('login-customer');
@@ -80,6 +82,8 @@ router.get('/dashboard',auth.User.authCheck,(req,res)=>{
   res.redirect('/user/profile-update');
 })
 
+
+
 router.get('/logout',(req,res)=>{
   req.logOut();
   req.flash('success_msg','You are now successfully logout');
@@ -94,6 +98,7 @@ router.get('/profile',auth.User.authCheck,(req,res)=>{
   res.render('user-profile',{user : req.user});
 })
 
+
 router.get('/dashboard/:id',auth.User.authCheck,(req,res)=>{
   res.render('place-order',{
     shop_id:req.params.id,
@@ -102,6 +107,17 @@ router.get('/dashboard/:id',auth.User.authCheck,(req,res)=>{
     cust_name:req.user.name,
     cust_location:req.user.City
   });
+})
+
+
+router.get('/history',auth.User.authCheck,(req,res)=>{
+  Order.find({from:req.user.id})
+  .then((data)=>{
+    res.render('history-user',{
+      data,
+      user : req.user
+    });
+  })
 })
 
 router.post('/signup',(req,res)=>{
