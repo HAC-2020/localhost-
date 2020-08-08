@@ -5,7 +5,7 @@
 
 <img src="https://img.shields.io/npm/v/npm">
 
-<img src="https://img.shields.io/packagist/stars/HAC-2020/localhost-?style=plastic"> 
+<img src="https://img.shields.io/github/stars/HAC-2020/localhost-?style=social"> 
 
 <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >
 
