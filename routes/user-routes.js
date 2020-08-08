@@ -4,12 +4,13 @@ const bcrypt=require('bcrypt');
 const User=require('../models/user');
 const passport=require('passport');
 const auth=require('../config/auth');
+const Shop=require('../models/Shop');
 
 router.get('/login',auth.User.revauthCheck,(req,res)=>{
   res.render('login-customer');
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/login',(req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/user/dashboard', 
     failureRedirect: '/user/login',

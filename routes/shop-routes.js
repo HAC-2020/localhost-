@@ -3,7 +3,7 @@ const bcrypt=require('bcrypt');
 const Shop=require('../models/Shop');
 const passport=require('passport');
 const auth=require('../config/auth');
-
+const Order=require('../models/Order');
 
 router.get('/login',auth.Shop.revauthCheck,(req,res)=>{
   res.render('shop-login');

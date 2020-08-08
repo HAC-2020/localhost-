@@ -7,6 +7,7 @@ const session=require('express-session');
 const auth=require('./config/auth');
 const passportSetup = require('./config/passport-setup-shop');
 const Shop=require('./models/Shop');
+const Order=require('./models/Order');
 require('./config/passport-setup-shop-local')(passport);
 const bodyParser=require('body-parser');
 require('dotenv').config();

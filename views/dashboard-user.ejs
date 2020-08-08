@@ -1,1 +1,99 @@
-Hello User 
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>DashBoard</title>
+      <meta name="author" content="name">
+      <meta name="description" content="description here">
+      <meta name="keywords" content="keywords,here">
+      <link rel="stylesheet" href="/assets/styles.css">
+      <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+      <!--Totally optional :) -->
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+   </head>
+   
+   <body class="font-sans leading-normal tracking-normal">
+      <div class="flex md:flex-row-reverse flex-wrap">
+		 <!--Main Content-->
+         <div class="w-full md:w-4/5 bg-gray-100">
+            <div class="container bg-gray-100 pt-16 px-6">
+             <!-- Serach icon -->
+              <div class="Serach relative text-gray-600">
+                <input type="search" name="search" placeholder="Search" class="bg-white h-12 px-5 pr-10 w-full border-2 rounded-full text-sm focus:outline-none">
+                <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+                  <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
+                    <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                  </svg>
+                </button>
+              </div>
+              <!-- Grid for cards  -->
+              <div class="flex flex-wrap" id="card">
+
+               <%shopData.forEach((data)=>{%>
+                <div class="w-full sm:w-1/2 md:w-1/3 px-2 mt-4">
+                  
+                  <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img class="w-full h-56 object-cover object-center" src="<%=data.image%>"" alt="avatar">
+                    <div class="flex items-center px-6 py-3 bg-gray-900">
+                      <svg class="text-white h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <h1 class="mx-3 text-white font-semibold text-lg">Accepting Orders</h1>
+                    </div>
+                    <div class="py-4 px-6">
+                        <h1 class="text-2xl font-semibold text-gray-800"><a href="/user/dashboard/<%=data._id%>"><%=data.shopname%></a></h1>
+                        <p class="py-2 text-lg text-gray-700">Kirana Store & SuperMarket</p>
+                        <div class="flex items-center mt-4 text-gray-700">
+                            <svg class="h-6 w-6 fill-current" viewBox="0 0 512 512">
+                                <path d="M256 32c-88.004 0-160 70.557-160 156.801C96 306.4 256 480 256 480s160-173.6 160-291.199C416 102.557 344.004 32 256 32zm0 212.801c-31.996 0-57.144-24.645-57.144-56 0-31.357 25.147-56 57.144-56s57.144 24.643 57.144 56c0 31.355-25.148 56-57.144 56z"/>
+                            </svg>
+                            <h1 class="px-2 text-sm"><%=data.City%></h1>
+                        </div>
+                        <div class="flex items-center mt-4 text-gray-700">
+                            <svg class="h-6 w-6 fill-current" viewBox="0 0 512 512">
+                                <path d="M437.332 80H74.668C51.199 80 32 99.198 32 122.667v266.666C32 412.802 51.199 432 74.668 432h362.664C460.801 432 480 412.802 480 389.333V122.667C480 99.198 460.801 80 437.332 80zM432 170.667L256 288 80 170.667V128l176 117.333L432 128v42.667z"/>
+                            </svg>
+                            <h1 class="px-2 text-sm"><%=data.email%></h1>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+               <%})%>
+
+                </div>
+              </div>
+
+            </div>
+         </div>
+		 
+		 <!--Sidebar-->
+         <div class="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-600">
+            <div class="md:relative mx-auto lg:float-right lg:px-6">
+               <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
+                  <li class="mr-3 flex-1">
+                     <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                     <i class="fas fa-home pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:font-bold block md:inline-block">Home</span>
+                     </a>
+                  </li>
+                  <li class="mr-3 flex-1">
+                     <a href="/user/history" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                     <i class="fas fa-history pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">History</span>
+                     </a>
+                  </li>
+                  <li class="mr-3 flex-1">
+                     <a href="/user/profile/" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                     <i class="fas fa-id-badge pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Profile</span>
+                     </a>
+                  </li>
+                  <li class="mr-3 flex-1">
+                     <a href="/user/logout" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                     <i class="fas fa-sign-out-alt pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">LogOut</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
