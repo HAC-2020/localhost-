@@ -55,6 +55,38 @@ app.use('/auth',require('./routes/auth-routes-shop'));
 
 app.use('/shop',require('./routes/shop-routes'));
 
+
+app.delete('/api/order/:id',(req,res)=>{
+  console.log(req.params.id);
+  Order.findById(req.params.id).then((data)=>{ 
+    data.remove();
+    res.json("Order Deleted");
+  }).catch((err)=>{
+    throw err;
+  })
+})
+
+app.put('/api/order/:id',(req,res)=>{
+  console.log(req.body);
+  Order.findOneAndUpdate({_id : req.params.id},{$set:{orderCompleted : true}},{upsert:true,new:true}).then((data)=>{
+    res.json('data Updates Successfully');
+  })
+})
+
+app.post('/api/order/:id',(req,res)=>{
+  console.log(req.body);
+  const { time,email } =req.body;
+  console.log(time,email);
+  res.json('Time allotted');
+})
+
+
+
+
+
+
+
+
 const PORT=process.env.PORT || 5000;
 
 const server=app.listen(PORT,function(){
