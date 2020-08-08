@@ -7,11 +7,19 @@ const session=require('express-session');
 const auth=require('./config/auth');
 const passportSetup = require('./config/passport-setup-shop');
 const Shop=require('./models/Shop');
+const nodemailer=require('nodemailer');
 const Order=require('./models/Order');
 require('./config/passport-setup-shop-local')(passport);
 const bodyParser=require('body-parser');
 require('dotenv').config();
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: process.env.EMAIL, 
+      pass: process.env.PASSWORD
+  }
+});
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -59,6 +67,20 @@ app.use('/shop',require('./routes/shop-routes'));
 app.delete('/api/order/:id',(req,res)=>{
   console.log(req.params.id);
   Order.findById(req.params.id).then((data)=>{ 
+    const mailOptions = {
+      from: 'customer.pansari@gmail.com', 
+      to: data.fromEmail,
+      subject: "Order Declined",
+      text: `Dear ${data.fromName} ,
+        Your order has been declined , sorry for the inconvinence , Try again after some time`
+    };
+    transporter.sendMail(mailOptions,(err,data)=>{
+      if(err){
+        console.log(err);
+      }else{
+        console.log('email sent!!!',data);
+      }
+    })
     data.remove();
     res.json("Order Deleted");
   }).catch((err)=>{
@@ -70,6 +92,22 @@ app.put('/api/order/:id',(req,res)=>{
   console.log(req.body);
   Order.findOneAndUpdate({_id : req.params.id},{$set:{orderCompleted : true}},{upsert:true,new:true}).then((data)=>{
     res.json('data Updates Successfully');
+    const mailOptions = {
+      from: 'customer.pansari@gmail.com', 
+      to: data.fromEmail,
+      subject: "Order Delevered",
+      text: `Thanks ${data.fromName} ,
+        For Using Our Platform
+        regards
+        Pansari Team`
+    };
+    transporter.sendMail(mailOptions,(err,data)=>{
+      if(err){
+        console.log(err);
+      }else{
+        console.log('email sent!!!',data);
+      }
+    })
   })
 })
 
@@ -78,6 +116,22 @@ app.post('/api/order/:id',(req,res)=>{
   const { time,email } =req.body;
   console.log(time,email);
   res.json('Time allotted');
+  const mailOptions = {
+    from: 'customer.pansari@gmail.com', 
+    to: email,
+    subject: "Order Accepted",
+    text: ` Your Order Has Been Accepted 
+    and we alloted you a time slot of ${time}
+    and be carefully and wear mask always and 
+    please be on time else  your order get cancelled`
+  };
+  transporter.sendMail(mailOptions,(err,data)=>{
+    if(err){
+      console.log(err);
+    }else{
+      console.log('email sent!!!',data);
+    }
+  })
 })
 
 
