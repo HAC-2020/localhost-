@@ -1,0 +1,35 @@
+@media only screen and (max-width:600px){
+  #check:not(:checked) ~ .content>#card-deck{
+    display:none;
+  }
+}
+#card-deck{
+    display: flex;
+    padding:1%;
+    padding-top:70px;  
+    flex-wrap: wrap;
+    justify-content: center;
+    /* background-color: grey; */
+}
+#card-deck>div{
+    margin:1rem;
+    text-align: center;
+    max-width:18rem;
+}
+#card-deck>div>img{
+    width: 50%;
+    margin: 10px auto;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.card{
+    cursor: pointer;
+    border: 1px solid black;
+}
+.card:hover{
+    box-shadow:0 0 5px 5px grey;
+}
+.card h5{
+    font-weight: bolder;
+}

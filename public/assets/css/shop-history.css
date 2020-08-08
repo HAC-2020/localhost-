@@ -1,0 +1,97 @@
+.content{
+    padding-top:70px;
+}
+table{
+    width:100%;
+    text-align: center;
+    /* table-layout: fixed; */
+}
+/* #requirementManagerModal table{
+    table-layout: fixed;
+} */
+
+table,th,tr,td{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+/* To make works take next line */
+td,th{
+    word-wrap: break-word;
+}
+
+th{
+     border-bottom: 1px solid black; 
+     min-height:3rem;
+}
+
+td,th{
+    vertical-align: center;
+    padding:0.5rem;
+}
+tr{
+    background-color:white
+}
+/* Give background color */
+tr:nth-of-type(even) { 
+    background: #eee; 
+}
+th{
+      background-color:rgb(201, 201, 201);
+}
+
+
+@media only screen and (max-width:800px){
+    /* Hiding elements while maintaining accessibility */
+    /* thead th{
+        position: absolute;
+        top:-9999px;
+        bottom: -9999px;
+    } */
+    /* To hide Head elements */
+    thead{
+        display: none;
+    }
+    /* To change tables behaviour --  tbody implicitily */
+    td,tr,tbody,table{
+        display: block;
+        width:100%;
+    }
+    /* Padding left to make space for before elements */
+    td{
+        border:none;
+        border-bottom: 1px solid #eee;
+        padding-left: 50%; 
+    }
+    /* nowrap to make stars appear in a single line */
+    .noWrap{
+        white-space: nowrap;
+    }
+
+    /* Introducing elements before table content*/
+    td:before{
+        position:absolute;
+        font-weight: bold;
+        /* top:6px;*/
+        left:80px; 
+        /* width:45%;*/
+        padding-left: 10px;
+    }
+	
+
+    td:nth-of-type(1):before { content: "Registered"; }
+	td:nth-of-type(2):before { content: "Category"; }
+	td:nth-of-type(3):before { content: "Problem"; }
+	td:nth-of-type(4):before { content: "Location"; }
+	td:nth-of-type(5):before { content: "City"; }
+
+}
+@media only screen and (max-width:800px){
+    #check:not(:checked) ~ div.content>table>tbody>tr>td::before{
+        left:250px;
+    }
+}
+@media only screen and (max-width:600px){
+    #check:not(:checked) ~ div.content>table{
+        display:none;
+    }
+}
