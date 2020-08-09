@@ -59,6 +59,7 @@ router.post('/profile-update',(req,res)=>{
 })
 
 router.get('/dashboard',auth.Shop.authCheck,(req,res)=>{
+  console.log(req.user);
    if(req.user.Updated){
      Order.find({to:req.user.id})
        .then((data)=>{
