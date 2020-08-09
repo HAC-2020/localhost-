@@ -11,6 +11,7 @@ const nodemailer=require('nodemailer');
 const Order=require('./models/Order');
 require('dotenv').config();
 
+// Happy Coading ... project completed
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
