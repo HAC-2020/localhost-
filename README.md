@@ -39,6 +39,13 @@ we have decided to create a user interface in the form of website ( later on an 
 4. Kepp Track of No. of person in the respective stores at that moment 
 5. Generate passes to ensure the stores hassel free.
 
+# Problem we face during making this project
+## Their are many persons who fills randomly text in thier list just to disturb the shopkeeper
+## Some people can try to fill our database with dummy data
+So we Come up with a great solutions to this problem
+1. We gives rights to the shopkeeper that he can decline any order
+2. We limit the Orders of user 1 at a time means until his/her first order not completed he/she cannot place another order
+ 
 ## Installation
 
 ```bash
